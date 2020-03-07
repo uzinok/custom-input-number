@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.nuber-calc {
+    display: flex;
+    width: 184px;
+
+    & button {
+        height: 48px;
+        width: 48px;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        border: 1px solid #88adf1;
+        background-color: transparent;
+        appearance: none;
+    }
+
+    & input {
+        width: 88px;
+        margin: 0;
+        height: 48px;
+        border: 1px solid #88adf1;
+        line-height: 48px;
+        color: #000;
+        padding: 0 10px;
+        background-color: transparent;
+        box-sizing: border-box;
+    }
+}
+
+.number-down::before,
+.number-up::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid #88adf1;
+    border-left: 1px solid #88adf1;
+    position: absolute;
+}
+
+.number-down::before {
+    transform: rotate(-45deg) translate(-50%, -50%);
+    top: 30%;
+    left: 70%;
+}
+
+.number-up::before {
+    top: 30%;
+    left: -6%;
+    transform: rotate(135deg) translate(-50%, -50%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    appearance: textfield;
+}
