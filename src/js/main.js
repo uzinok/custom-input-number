@@ -1,28 +1,53 @@
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-    let nuberCalc = document.querySelector('.nuber-calc'),
-        inputNumber = document.querySelector('[type="number"]'),
-        step = parseFloat(inputNumber.getAttribute('step')) || 1,
-        max = parseFloat(inputNumber.getAttribute('max')),
-        min = parseFloat(inputNumber.getAttribute('min'));
+    if (document.querySelector('.nuber-calc')) {
 
 
-    nuberCalc.querySelector('.number-down').addEventListener('click', function () {
-        if (!(parseFloat(inputNumber.value) <= min)) {
-            if (parseFloat(inputNumber.value) - step <= min)
-                inputNumber.value = min;
-            else
-                inputNumber.value = parseFloat(inputNumber.value) - step
+        let arrNuberCalc = document.querySelectorAll('.nuber-calc');
+
+        for(let i = 0; i < arrNuberCalc.length; i++) {
+            mycalc(arrNuberCalc[i]);
         }
-    })
 
-    nuberCalc.querySelector('.number-up').addEventListener('click', function () {
-        if (!(parseFloat(inputNumber.value) >= max)) {
-            if (parseFloat(inputNumber.value) + step >= max)
-                inputNumber.value = max;
-            else
-                inputNumber.value = parseFloat(inputNumber.value) + step;
+        function mycalc(nuberCalc) {
+            let numberDown = nuberCalc.querySelector('.number-down'),
+                numberUp = nuberCalc.querySelector('.number-up'),
+                numberInp = nuberCalc.querySelector('[type="number"]'),
+                min = numberInp.getAttribute('min') || 1,
+                max = numberInp.getAttribute('max') || 1100000,
+                step = numberInp.getAttribute('step') || 1;
+
+            numberDown.addEventListener('click', function (e) {
+
+                e = e || event;
+                e.preventDefault();
+
+                numberInp.focus();
+
+                valueInp = numberInp.value || 0;
+
+                if (!(min >= valueInp - step)) {
+                    numberInp.value = (valueInp * 10 - step * 10) / 10;
+                } else {
+                    numberInp.value = min;
+                }
+            })
+
+            numberUp.addEventListener('click', function (e) {
+
+                e = e || event;
+                e.preventDefault();
+
+                numberInp.focus();
+
+                valueInp = numberInp.value || 0;
+
+                if (!(max <= valueInp + step)) {
+                    numberInp.value = (valueInp * 10 + step * 10) / 10;
+                } else {
+                    numberInp.value = max;
+                }
+            })
         }
-        console.log(parseFloat(inputNumber.value) + " - " + step)
-    })
-};
+    }
+})

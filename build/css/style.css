@@ -48,6 +48,9 @@ body {
   background-color: transparent;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .number-down::before,
 .number-up::before {
